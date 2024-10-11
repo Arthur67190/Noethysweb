@@ -21,6 +21,7 @@ settings_production.py
 TODO.txt
 mysql.cfg
 /static/
+noethysweb/static
 gunicorn.pid
 gunicron.sock
 

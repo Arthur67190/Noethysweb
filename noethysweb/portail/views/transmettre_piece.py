@@ -12,6 +12,7 @@ from core.views import crud
 from core.models import PortailMessage, PortailRenseignement
 from portail.forms.transmettre_piece import Formulaire
 from portail.views.base import CustomView
+from portail.utils.utils_impression import add_watermark
 
 
 class Page(CustomView):
@@ -40,6 +41,8 @@ class Ajouter(Page, crud.Ajouter):
 
     def Apres_form_valid(self, form=None, instance=None):
         # Mémorisation du renseignement
+        if (instance.document.path.endswith('.pdf')):
+            add_watermark(instance.document, "Sacadoc | Movement des flambeaux")
         PortailRenseignement.objects.create(famille=self.request.user.famille, individu=instance.individu,
                                             categorie="famille_pieces", code="Nouvelle pièce", validation_auto=True,
                                             nouvelle_valeur=json.dumps(instance.Get_nom(), cls=DjangoJSONEncoder), idobjet=instance.pk)
