@@ -18,7 +18,6 @@ class Page(crud.Page):
     objet_pluriel = "des règlements"
     url_supprimer_plusieurs = "reglements_supprimer_plusieurs"
 
-
 class Liste(Page, crud.Liste):
     model = Reglement
 
@@ -38,6 +37,9 @@ class Liste(Page, crud.Liste):
         context['impression_conclusion'] = ""
         context['active_checkbox'] = True
         context['totaux'] = json.dumps(["montant",])
+        context["boutons_liste"] = [
+             { "label" : "Ajouter", "classe": "btn btn-success", "href": reverse_lazy('ajouter_reglement_familles'), "icone": "fa fa-plus"}
+         ]
         return context
 
     class datatable_class(MyDatatable):
