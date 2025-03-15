@@ -10,7 +10,7 @@ from core.decorators import Verifie_ventilation
 from reglements.views import liste_reglements, liste_recus, liste_detaillee_reglements, synthese_modes_reglements, \
                             depots_reglements, depots_reglements_selection, detail_prestations_depot, \
                             liste_reglements_disponibles, corriger_ventilation, liste_paiements, reglements_lot_factures, \
-                            detail_ventilations_depots, detail_ventilations_reglements
+                            detail_ventilations_depots, detail_ventilations_reglements, ajouter_reglement_familles
 
 
 urlpatterns = [
@@ -20,6 +20,7 @@ urlpatterns = [
 
     # Règlements
     path('reglements/liste_reglements', liste_reglements.Liste.as_view(), name='liste_reglements'),
+    path('reglements/ajouter_reglement_familles', ajouter_reglement_familles.Liste.as_view(), name='ajouter_reglement_familles'),
     path('reglements/reglements_supprimer_plusieurs/<str:listepk>', liste_reglements.Supprimer_plusieurs.as_view(), name='reglements_supprimer_plusieurs'),
     path('reglements/liste_recus', liste_recus.Liste.as_view(), name='liste_recus'),
     path('reglements/liste_detaillee_reglements', liste_detaillee_reglements.View.as_view(), name='liste_detaillee_reglements'),
